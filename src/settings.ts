@@ -1,35 +1,46 @@
 import {App, PluginSettingTab, Setting} from "obsidian";
-import MyPlugin from "./main";
+import VaultyIngestPlugin from "./main";
 
-export interface MyPluginSettings {
-	mySetting: string;
+export interface VaultyIngestSettings {
+	watchFolder: string;
+	autoIngest: boolean;
 }
 
-export const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
+export const DEFAULT_SETTINGS: VaultyIngestSettings = {
+	watchFolder: 'raw/clippings',
+	autoIngest: true
 }
 
-export class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+export class VaultyIngestSettingTab extends PluginSettingTab {
+	plugin: VaultyIngestPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: VaultyIngestPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
 
 	display(): void {
 		const {containerEl} = this;
-
 		containerEl.empty();
 
 		new Setting(containerEl)
-			.setName('Settings #1')
-			.setDesc('It\'s a secret')
+			.setName('Watch Folder')
+			.setDesc('Folder to monitor for new clippings (relative to vault root)')
 			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
+				.setPlaceholder('raw/clippings')
+				.setValue(this.plugin.settings.watchFolder)
 				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
+					this.plugin.settings.watchFolder = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
+			.setName('Auto-ingest')
+			.setDesc('Automatically run Claude Code /ingest when new files are detected')
+			.addToggle(toggle => toggle
+				.setValue(this.plugin.settings.autoIngest)
+				.onChange(async (value) => {
+					this.plugin.settings.autoIngest = value;
 					await this.plugin.saveSettings();
 				}));
 	}

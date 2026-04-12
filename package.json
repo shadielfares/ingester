@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "vaulty-ingest",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Watches a folder for new clippings and triggers Claude Code /ingest",
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
