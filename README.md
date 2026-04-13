@@ -2,7 +2,7 @@
 
 An Obsidian plugin that watches a folder for new clippings and automatically triggers Claude Code's `/ingest` skill.
 
-![Vaulty Ingest Demo](https://github.com/user-attachments/assets/90a5f6c5-6be5-4d86-a85c-ad9765efc7cc)
+https://github.com/user-attachments/assets/90a5f6c5-6be5-4d86-a85c-ad9765efc7cc
 
 ## How It Works
 
