@@ -24,10 +24,10 @@ export class VaultyIngestSettingTab extends PluginSettingTab {
 		containerEl.empty();
 
 		new Setting(containerEl)
-			.setName('Watch Folder')
+			.setName('Watch folder')
 			.setDesc('Folder to monitor for new clippings (relative to vault root)')
 			.addText(text => text
-				.setPlaceholder('raw/clippings')
+				.setPlaceholder('Raw-clippings')
 				.setValue(this.plugin.settings.watchFolder)
 				.onChange(async (value) => {
 					this.plugin.settings.watchFolder = value;
@@ -36,7 +36,7 @@ export class VaultyIngestSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Auto-ingest')
-			.setDesc('Automatically run Claude Code /ingest when new files are detected')
+			.setDesc('Automatically run claude code /ingest when new files are detected')
 			.addToggle(toggle => toggle
 				.setValue(this.plugin.settings.autoIngest)
 				.onChange(async (value) => {

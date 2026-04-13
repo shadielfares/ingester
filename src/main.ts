@@ -1,4 +1,4 @@
-import {Plugin, TFile, TAbstractFile, Notice} from 'obsidian';
+import {Plugin, TFile, TAbstractFile, Notice, FileSystemAdapter} from 'obsidian';
 import {exec} from 'child_process';
 import {promisify} from 'util';
 import {DEFAULT_SETTINGS, VaultyIngestSettings, VaultyIngestSettingTab} from "./settings";
@@ -22,7 +22,7 @@ export default class VaultyIngestPlugin extends Plugin {
 				if (!this.claudeAvailable) return;
 				if (!this.settings.autoIngest) return;
 
-				this.onNewClipping(file);
+				void this.onNewClipping(file);
 			})
 		);
 	}
@@ -33,12 +33,14 @@ export default class VaultyIngestPlugin extends Plugin {
 			this.claudeAvailable = true;
 		} catch {
 			this.claudeAvailable = false;
-			new Notice('Vaulty Ingest: Claude Code CLI not found');
+			new Notice('Could not find claude command');
 		}
 	}
 
 	async onNewClipping(file: TFile) {
-		const vaultPath = (this.app.vault.adapter as any).basePath;
+		const adapter = this.app.vault.adapter;
+		if (!(adapter instanceof FileSystemAdapter)) return;
+		const vaultPath = adapter.getBasePath();
 
 		new Notice(`Ingesting: ${file.name}`);
 
@@ -51,7 +53,8 @@ export default class VaultyIngestPlugin extends Plugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData() as Partial<VaultyIngestSettings>);
+		const data = await this.loadData() as VaultyIngestSettings | null;
+		this.settings = { ...DEFAULT_SETTINGS, ...(data ?? {}) };
 	}
 
 	async saveSettings() {
