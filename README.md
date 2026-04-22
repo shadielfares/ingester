@@ -2,11 +2,11 @@
 
 An Obsidian plugin that watches a folder for new clippings and automatically triggers Claude Code's `/ingest` skill.
 
-![Vaulty Ingest Demo](https://github.com/user-attachments/assets/90a5f6c5-6be5-4d86-a85c-ad9765efc7cc)
+https://github.com/user-attachments/assets/90a5f6c5-6be5-4d86-a85c-ad9765efc7cc
 
 ## How It Works
 
-1. The user will uses **Obsidian Web Clipper** to save an article to e.g `raw/clippings/`
+1. **Obsidian Web Clipper** is used to save an article to e.g `raw/clippings/`
 2. Plugin detects the new file
 3. Opens a new tmux window and runs `claude "/ingest <path>"`
 4. Claude Code processes the source into your wiki knowledge graph
