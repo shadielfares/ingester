@@ -1,20 +1,20 @@
-import {App, PluginSettingTab, Setting} from "obsidian";
-import VaultyIngestPlugin from "./main";
+import {App, normalizePath, PluginSettingTab, Setting} from "obsidian";
+import IngesterPlugin from "./main";
 
-export interface VaultyIngestSettings {
+export interface IngesterSettings {
 	watchFolder: string;
 	autoIngest: boolean;
 }
 
-export const DEFAULT_SETTINGS: VaultyIngestSettings = {
+export const DEFAULT_SETTINGS: IngesterSettings = {
 	watchFolder: 'raw/clippings',
 	autoIngest: true
 }
 
-export class VaultyIngestSettingTab extends PluginSettingTab {
-	plugin: VaultyIngestPlugin;
+export class IngesterSettingTab extends PluginSettingTab {
+	plugin: IngesterPlugin;
 
-	constructor(app: App, plugin: VaultyIngestPlugin) {
+	constructor(app: App, plugin: IngesterPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -30,7 +30,7 @@ export class VaultyIngestSettingTab extends PluginSettingTab {
 				.setPlaceholder('Raw-clippings')
 				.setValue(this.plugin.settings.watchFolder)
 				.onChange(async (value) => {
-					this.plugin.settings.watchFolder = value;
+					this.plugin.settings.watchFolder = normalizePath(value);
 					await this.plugin.saveSettings();
 				}));
 

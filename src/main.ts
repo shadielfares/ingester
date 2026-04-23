@@ -1,14 +1,14 @@
 import {Plugin, TFile, TAbstractFile} from 'obsidian';
-import {DEFAULT_SETTINGS, VaultyIngestSettings, VaultyIngestSettingTab} from './settings';
+import {DEFAULT_SETTINGS, IngesterSettings, IngesterSettingTab} from './settings';
 import {ClippingService} from './clipping-service';
 
-export default class VaultyIngestPlugin extends Plugin {
-	settings: VaultyIngestSettings;
+export default class IngesterPlugin extends Plugin {
+	settings: IngesterSettings;
 	clippingService: ClippingService;
 
 	async onload() {
 		await this.loadSettings();
-		this.addSettingTab(new VaultyIngestSettingTab(this.app, this));
+		this.addSettingTab(new IngesterSettingTab(this.app, this));
 
 		this.clippingService = new ClippingService(this.app);
 		void this.clippingService.checkAvailability();
@@ -26,7 +26,7 @@ export default class VaultyIngestPlugin extends Plugin {
 	}
 
 	async loadSettings() {
-		const data = await this.loadData() as VaultyIngestSettings | null;
+		const data = await this.loadData() as IngesterSettings | null;
 		this.settings = { ...DEFAULT_SETTINGS, ...(data ?? {}) };
 	}
 

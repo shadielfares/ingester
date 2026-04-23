@@ -1,4 +1,4 @@
-# Vaulty Ingest
+# Ingester
 
 An Obsidian plugin that watches a folder for new clippings and automatically triggers Claude Code's `/ingest` skill.
 
@@ -15,13 +15,15 @@ https://github.com/user-attachments/assets/90a5f6c5-6be5-4d86-a85c-ad9765efc7cc
 
 - [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed and in PATH
 - tmux running in your terminal
-- The `/ingest` skill defined at `.claude/skills/ingest/SKILL.md` in your vault
+- zsh shell (macOS default; Linux users may need to install)
+- The `/ingest` skill defined at `.claude/skills/ingest/SKILL.md` in your vault (see `skills/` folder in this repo)
 
 ## Installation
 
-1. Copy `main.js`, `manifest.json`, and `styles.css` to `.obsidian/plugins/vaulty-ingest/`
-2. Enable "Vaulty Ingest" in Settings > Community Plugins
+1. Copy `main.js`, `manifest.json`, and `styles.css` to `.obsidian/plugins/ingester/`
+2. Enable "Ingester" in Settings > Community Plugins
 3. Configure the watch folder in plugin settings
+4. Copy `skills/ingest/SKILL.md` to `.claude/skills/ingest/SKILL.md` in your vault
 
 ## Settings
 
