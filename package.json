@@ -1,6 +1,6 @@
 {
 	"name": "vaulty-ingest",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Watches a folder for new clippings and triggers Claude Code /ingest",
 	"main": "main.js",
 	"type": "module",
