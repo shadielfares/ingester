@@ -1,6 +1,6 @@
 {
 	"name": "ingester",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Watches a folder for new clippings and triggers Claude Code /ingest",
 	"main": "main.js",
 	"type": "module",

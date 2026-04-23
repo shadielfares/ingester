@@ -1,7 +1,7 @@
 {
 	"id": "ingester",
 	"name": "Ingester",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"minAppVersion": "0.15.0",
 	"description": "Watches a folder for new web clippings and automatically triggers Claude Code /ingest.",
 	"author": "Shadi El-Fares",
