@@ -32,6 +32,8 @@ https://github.com/user-attachments/assets/90a5f6c5-6be5-4d86-a85c-ad9765efc7cc
 | Watch Folder | `raw/clippings` | Folder to monitor for new files |
 | Auto-ingest | `true` | Automatically run `/ingest` when new files are detected |
 
+> **Note:** The included `/ingest` skill expects sources in `raw/clippings/`. If you change the watch folder, update the path references in `SKILL.md` to match.
+
 ## Disclosures
 
 **Account required**: This plugin requires [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code), which requires an Anthropic account and API access.
